@@ -3,3 +3,10 @@ change from remote...2 (rearranged ...4)
 change from local...3
 change 5... from remote
 change 6... from local
+a
+b
+c
+d
+e
+f
+g
