@@ -1,0 +1,68 @@
+#you might need to install the packages before importing them
+
+import pickle    #pip install pickle
+import re
+
+# pip install nltk
+#the steps below only need to be implemented only if you are working locally (for the first time)
+#not for google collab or in kaggle
+#       - import nltk
+#       - then run nltk.download_shell()
+#       - run -> d stopwords
+#       - run -> d punkt
+from nltk.stem import SnowballStemmer    
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from string import punctuation
+
+def isnum(string):
+    pattern = re.compile('\d')
+    matches = []
+    for match in pattern.finditer(string):
+        matches.append(match.group())
+    return matches
+
+def text_preprocess(text):
+    rem_mention = ' '.join([word for word in text.split() if '@' not in word])
+    rem_punc = ''.join([char.lower() for char in rem_mention if char not in punctuation])
+    tokenize = [word for word in word_tokenize(rem_punc) if word not in stopwords.words('english') and len(isnum(word))==0 and len(word)>1]
+    sb = SnowballStemmer('english')  
+    stem = ' '.join([sb.stem(word) for word in tokenize])
+    return stem
+
+
+with open('pkl/svm.pkl', 'rb') as f:
+    svm_pkl = pickle.load(f)
+with open('pkl/tfidf.pkl', 'rb') as f:
+    tfidf_vc_pkl = pickle.load(f)
+
+def run_model():
+    new_test = str(input('Enter your review: \n'))
+    new_test = text_preprocess(new_test)
+    new_test_tfidf = tfidf_vc_pkl.transform([new_test])
+    ans_svm = svm_pkl.predict(new_test_tfidf)[0]
+    print('\n**********************\n')
+    if(ans_svm==0):
+        print(f'It seems like a bad review.')
+    else:
+        print(f'looks like a good one!')
+    print('\n**********************\n')
+    command = str(input("Press 'r' to enter review again: "))
+    if(command.lower()=='r'):
+        run_model()
+    
+run_model()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
