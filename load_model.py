@@ -1,15 +1,19 @@
 #you might need to install the packages before importing them
 
-import pickle    #pip install pickle
+#pip install pickle
+import pickle    
 import re
 
+'''
+ >> the steps below only need to be implemented
+    only if you are working locally (for the first time)
+    not for google collab or in kaggle
+           - import nltk
+           - then run nltk.download_shell()
+           - run -> d stopwords
+           - run -> d punkt
+'''
 # pip install nltk
-#the steps below only need to be implemented only if you are working locally (for the first time)
-#not for google collab or in kaggle
-#       - import nltk
-#       - then run nltk.download_shell()
-#       - run -> d stopwords
-#       - run -> d punkt
 from nltk.stem import SnowballStemmer    
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -52,17 +56,3 @@ def run_model():
         run_model()
     
 run_model()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
