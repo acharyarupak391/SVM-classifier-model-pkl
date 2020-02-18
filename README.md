@@ -1,1 +1,1 @@
-# test_git
+## run : python load_model.py
