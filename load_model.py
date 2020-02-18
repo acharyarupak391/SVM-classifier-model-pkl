@@ -4,6 +4,7 @@
 import pickle    
 import re
 
+# pip install nltk
 '''
  >> the steps below only need to be implemented
     only if you are working locally (for the first time)
@@ -13,7 +14,6 @@ import re
            - run -> d stopwords
            - run -> d punkt
 '''
-# pip install nltk
 from nltk.stem import SnowballStemmer    
 from nltk import word_tokenize
 from nltk.corpus import stopwords
