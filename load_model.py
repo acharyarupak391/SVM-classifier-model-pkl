@@ -3,6 +3,7 @@
 #pip install pickle
 import pickle    
 import re
+import os
 
 # pip install nltk
 '''
@@ -18,6 +19,11 @@ from nltk.stem import SnowballStemmer
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from string import punctuation
+
+file_path = os.path.dirname(os.path.realpath(__file__))
+svm_pkl_path = os.path.join(file_path, 'pkl', 'svm.pkl')
+tfidf_pkl_path = os.path.join(file_path, 'pkl', 'tfidf.pkl')
+print(f"file_path: {file_path}")
 
 def isnum(string):
     pattern = re.compile('\d')
@@ -35,9 +41,9 @@ def text_preprocess(text):
     return stem
 
 
-with open('pkl/svm.pkl', 'rb') as f:
+with open(svm_pkl_path, 'rb') as f:
     svm_pkl = pickle.load(f)
-with open('pkl/tfidf.pkl', 'rb') as f:
+with open(tfidf_pkl_path, 'rb') as f:
     tfidf_vc_pkl = pickle.load(f)
 
 def run_model():
