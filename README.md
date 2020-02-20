@@ -1,1 +1,1 @@
-## run : python load_model.py
+## run load_model.py
