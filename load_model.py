@@ -65,7 +65,8 @@ def run_model(arg=''):
     else:
         print(f'looks like a good one!')
     print('\n**********************\n')
-    command = str(input("Press 'r' to enter review again: "))
+    if(arg == ''):
+        command = str(input("Press 'r' to enter review again: "))
     if(command.lower()=='r'):
         run_model(arg)
     
