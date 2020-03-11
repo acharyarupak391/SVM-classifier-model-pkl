@@ -57,7 +57,7 @@ def run_model(arg=''):
     new_test = text_preprocess(new_test)
     new_test_tfidf = tfidf_vc_pkl.transform([new_test])
     ans_svm = svm_pkl.predict(new_test_tfidf)[0]
-    if(arg==''):
+    if(arg != ''):
         print(f'Your review: {arg}\n') 
     print('\n**********************\n')
     if(ans_svm==0):
