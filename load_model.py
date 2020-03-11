@@ -4,6 +4,10 @@
 import pickle    
 import re
 import os
+import sys
+
+arg = str(' '.join(sys.argv[1:]))
+print('sys argv: \n', len(sys.argv), arg)
 
 # pip install nltk
 '''
@@ -46,8 +50,12 @@ with open(svm_pkl_path, 'rb') as f:
 with open(tfidf_pkl_path, 'rb') as f:
     tfidf_vc_pkl = pickle.load(f)
 
-def run_model():
-    new_test = str(input('Enter your review: \n'))
+def run_model(arg=''):
+    if(arg==''):
+        new_test = str(input('Enter your review: \n'))
+    else:
+        new_test = arg
+        
     new_test = text_preprocess(new_test)
     new_test_tfidf = tfidf_vc_pkl.transform([new_test])
     ans_svm = svm_pkl.predict(new_test_tfidf)[0]
@@ -59,6 +67,7 @@ def run_model():
     print('\n**********************\n')
     command = str(input("Press 'r' to enter review again: "))
     if(command.lower()=='r'):
-        run_model()
+        run_model(arg)
     
-run_model()
+
+run_model(arg)
