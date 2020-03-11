@@ -7,7 +7,6 @@ import os
 import sys
 
 arg = str(' '.join(sys.argv[1:]))
-print('sys argv: \n', len(sys.argv), arg)
 
 # pip install nltk
 '''
@@ -27,7 +26,6 @@ from string import punctuation
 file_path = os.path.dirname(os.path.realpath(__file__))
 svm_pkl_path = os.path.join(file_path, 'pkl', 'svm.pkl')
 tfidf_pkl_path = os.path.join(file_path, 'pkl', 'tfidf.pkl')
-print(f"file_path: {file_path}")
 
 def isnum(string):
     pattern = re.compile('\d')
